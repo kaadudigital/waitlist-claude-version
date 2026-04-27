@@ -1,0 +1,309 @@
+{%- comment -%}
+  Section: waitlist-success
+  Shown after a successful waitlist signup.
+  Mirrors the waitlist-hero layout but drops the form in favour of a
+  confirmation message and a different ticker variant.
+{%- endcomment -%}
+
+{% render 'kaadu-fonts' %}
+{{ 'kaadu-ds.css' | asset_url | stylesheet_tag }}
+
+{%- assign has_image = false -%}
+{%- if section.settings.image != blank -%}
+  {%- assign has_image = true -%}
+{%- endif -%}
+
+<section
+  id="waitlist-success-{{ section.id }}"
+  class="wl-success{% if has_image %} wl-success--has-image{% endif %}"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="wl-success__container">
+
+    <div class="wl-success__content">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="wl-success__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="wl-success__heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.body_text != blank -%}
+        <div class="wl-success__body">{{ section.settings.body_text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="kds-btn kds-btn--label wl-success__cta">
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+
+    </div>
+
+    {%- if has_image -%}
+      <div class="wl-success__media" aria-hidden="true">
+        <div class="kds-image-frame wl-success__image-frame">
+          {{-
+            section.settings.image
+            | image_url: width: 600
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              class: 'wl-success__image',
+              alt: ''
+          -}}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{%- if section.settings.show_ticker -%}
+  <div
+    class="kds-ticker"
+    style="background-color: {{ section.settings.ticker_bg }};"
+    aria-hidden="true"
+  >
+    <div class="kds-ticker__track">
+      {%- for i in (1..4) -%}
+        <span class="kds-ticker__item" style="color: {{ section.settings.ticker_color }};">
+          {{ section.settings.ticker_text }}
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  /* ── Success layout ───────────────────────────────────────────────── */
+  .wl-success {
+    padding: var(--kds-s16) 0 var(--kds-s12);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .wl-success__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--kds-s8);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--kds-s12);
+    text-align: center;
+  }
+
+  .wl-success--has-image .wl-success__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--kds-s12);
+    align-items: center;
+    text-align: left;
+  }
+
+  /* ── Typography ───────────────────────────────────────────────────── */
+  .wl-success__eyebrow {
+    font-family: var(--kds-font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--kds-violet);
+    margin: 0 0 var(--kds-s3);
+  }
+
+  .wl-success__heading {
+    font-family: var(--kds-font-display);
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--kds-red);
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--kds-s6);
+  }
+
+  .wl-success__body {
+    font-family: var(--kds-font-body);
+    font-size: 18px;
+    line-height: 1.56;
+    color: var(--kds-black);
+    margin: 0 0 var(--kds-s8);
+  }
+
+  .wl-success--has-image .wl-success__body {
+    max-width: 440px;
+  }
+
+  .wl-success__cta {
+    align-self: flex-start;
+  }
+
+  .wl-success--has-image .wl-success__cta {
+    align-self: auto;
+  }
+
+  /* ── Image ────────────────────────────────────────────────────────── */
+  .wl-success__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wl-success__image-frame {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--kds-lime);
+  }
+
+  .wl-success__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Mobile ───────────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .wl-success {
+      padding: var(--kds-s12) 0 var(--kds-s8);
+      min-height: auto;
+    }
+
+    .wl-success--has-image .wl-success__container {
+      grid-template-columns: 1fr;
+      gap: var(--kds-s8);
+      padding: 0 var(--kds-s6);
+      text-align: center;
+    }
+
+    .wl-success__container {
+      padding: 0 var(--kds-s6);
+    }
+
+    .wl-success__media { order: -1; }
+
+    .wl-success__heading {
+      font-size: 52px;
+      line-height: 1.05;
+    }
+
+    .wl-success--has-image .wl-success__body {
+      max-width: 100%;
+    }
+
+    .wl-success__cta,
+    .wl-success--has-image .wl-success__cta {
+      align-self: center;
+    }
+
+    .wl-success__image-frame {
+      max-width: 260px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Waitlist Success",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Geschafft!"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Headline",
+      "default": "YOU'RE IN!"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body copy",
+      "default": "<p>Du bist jetzt auf der Liste – ganz vorne dabei, wenn's losgeht. Wir melden uns.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Optional CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFC5FF"
+    },
+    {
+      "type": "header",
+      "content": "Ticker strip"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ticker",
+      "label": "Show ticker",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Ticker text",
+      "default": "JUSTICE NEVER TASTED SO SWEET · JUSTICE NEVER TASTED SO SWEET · "
+    },
+    {
+      "type": "color",
+      "id": "ticker_bg",
+      "label": "Ticker background",
+      "default": "#542A76"
+    },
+    {
+      "type": "color",
+      "id": "ticker_color",
+      "label": "Ticker text color",
+      "default": "#FFC5FF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Waitlist Success"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

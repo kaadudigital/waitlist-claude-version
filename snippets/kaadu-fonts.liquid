@@ -1,0 +1,23 @@
+{%- comment -%}
+  Kaadu font helper.
+
+  Brand fonts (fagies, bantergroteskregular) are declared globally in
+  snippets/css-bridge.liquid using direct Shopify CDN URLs, so they are
+  available on every page without any extra work. This snippet is kept as
+  a no-op placeholder in case that ever changes, and to serve as a
+  reminder of where the font loading actually lives.
+
+  Font CDN declarations (in css-bridge.liquid):
+    • 'fagies'               — display / H1
+    • 'bantergroteskregular' — body / headings (Regular weight)
+    • 'bantergrotesk'        — body / headings (Semibold weight)
+    • 'thickhead'            — legacy display fallback
+
+  Theme CSS variables (set in theme.liquid → css-bridge.liquid):
+    • --heading-font-stack → fagies
+    • --main-font-stack    → bantergroteskregular
+
+  kaadu-ds.css references var(--heading-font-stack) and
+  var(--main-font-stack), so all kds- components pick up the correct
+  fonts automatically.
+{%- endcomment -%}

@@ -1,0 +1,148 @@
+{{ 'kaadu-ds.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="kds-value-prop-{{ section.id }}"
+  class="kds-vp"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="kds-vp__container">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="kds-vp__eyebrow" style="color: {{ section.settings.eyebrow_color }};">
+        {{ section.settings.eyebrow }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.body_text != blank -%}
+      <div class="kds-vp__body" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.body_text }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.badge_text != blank -%}
+      <div class="kds-badge kds-badge--lime kds-vp__badge">
+        {{ section.settings.badge_text }}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .kds-vp {
+    padding: var(--kds-s12) 0;
+  }
+
+  .kds-vp__container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--kds-s8);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--kds-s4);
+  }
+
+  .kds-vp__eyebrow {
+    font-family: var(--kds-font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .kds-vp__body {
+    font-family: var(--kds-font-body);
+    font-size: 18px;
+    line-height: 1.56;
+    margin: 0;
+  }
+
+  .kds-vp__body strong {
+    font-weight: 700;
+  }
+
+  .kds-vp__badge {
+    margin-top: var(--kds-s2);
+  }
+
+  @media (max-width: 767px) {
+    .kds-vp {
+      padding: var(--kds-s8) 0;
+    }
+
+    .kds-vp__container {
+      padding: 0 var(--kds-s6);
+    }
+
+    .kds-vp__eyebrow {
+      font-size: 17px;
+    }
+
+    .kds-vp__body {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "KDS — Value Prop",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow / subtitle",
+      "default": "Pioniere profitieren"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body copy",
+      "default": "<p>Waitlist beitreten und 50% auf deine erste Bestellung nach dem Launch erhalten.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Optional badge label",
+      "info": "Leave blank to hide the badge."
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background colour",
+      "default": "#AE0000"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow colour",
+      "default": "#FFC5FF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text colour",
+      "default": "#FFFFF5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KDS — Value Prop"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

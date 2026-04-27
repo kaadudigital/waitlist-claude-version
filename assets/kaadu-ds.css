@@ -1,0 +1,191 @@
+/*
+ * Kaadu Design System — Base Tokens & Components
+ * Load in any section: {{ 'kaadu-ds.css' | asset_url | stylesheet_tag }}
+ *
+ * Fonts are declared separately via {% render 'kaadu-fonts' %} because
+ * @font-face src requires Liquid's asset_url filter.
+ */
+
+/* ─── Global behaviour ─────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Color tokens ─────────────────────────────────────────────────── */
+:root {
+  /* Primary */
+  --kds-red:        #AE0000;   /* hero headlines, CTAs */
+  --kds-violet:     #542A76;   /* dark sections, eyebrows */
+  --kds-pink:       #FFC5FF;   /* hero backgrounds */
+  --kds-orange:     #FF781E;   /* accents, product labels */
+  --kds-cream:      #FFFFF5;   /* light bg, text on dark */
+
+  /* Secondary */
+  --kds-lime:       #ACFF64;   /* tickers, badges */
+  --kds-yellow:     #EDF731;   /* highlights */
+  --kds-sky:        #B7D9FF;   /* section backgrounds */
+
+  /* Neutrals */
+  --kds-black:      #000000;
+  --kds-near-black: #221F1F;
+  --kds-dark-brown: #422A24;
+  --kds-mid-grey:   #8C8C8C;
+  --kds-light-grey: #E6E6E6;
+
+  /* ─── Typography families ───────────────────────────────────────────
+   * Delegate to the theme's global font variables (set in css-bridge.liquid
+   * from settings_data.json). Currently resolves to:
+   *   --heading-font-stack → fagies
+   *   --main-font-stack    → bantergroteskregular
+   * Both fonts are loaded via Shopify CDN in snippets/css-bridge.liquid.
+   * ─────────────────────────────────────────────────────────────────── */
+  --kds-font-display: var(--heading-font-stack);
+  --kds-font-heading: var(--main-font-stack);
+  --kds-font-body:    var(--main-font-stack);
+
+  /* ─── Spacing (4 px base) ─── */
+  --kds-s1:   4px;
+  --kds-s2:   8px;
+  --kds-s3:   12px;
+  --kds-s4:   16px;
+  --kds-s6:   24px;
+  --kds-s8:   32px;
+  --kds-s12:  48px;
+  --kds-s16:  64px;
+  --kds-s24:  96px;
+  --kds-s32:  128px;
+
+  /* ─── Radii ─── */
+  --kds-radius-pill: 30px;
+  --kds-radius-card: 12px;
+
+  /* ─── Shadows ─── */
+  --kds-shadow-sm: 0 2px 7.6px 0 rgba(0, 0, 0, 0.25);
+  --kds-shadow-md: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  --kds-shadow-lg: 6px 8px 0 #000;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────────────── */
+
+/* Base pill shape — apply modifiers for color/type */
+.kds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid var(--kds-black);
+  border-radius: var(--kds-radius-pill);
+  box-shadow: var(--kds-shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+  background: none;
+  -webkit-appearance: none;
+}
+.kds-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25); }
+.kds-btn:active { transform: translateY(0);    box-shadow: var(--kds-shadow-sm); }
+
+/* Display — Fagies font, cream bg, red text */
+.kds-btn--display {
+  padding: 16px 32px;
+  background-color: var(--kds-cream);
+  font-family: var(--kds-font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--kds-red);
+}
+
+/* Label — Banter Grotesk, cream bg, black text */
+.kds-btn--label {
+  padding: 14px 28px;
+  background-color: var(--kds-cream);
+  font-family: var(--kds-font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--kds-black);
+}
+
+/* Inverse — for dark backgrounds */
+.kds-btn--inverse {
+  background-color: transparent;
+  border-color: var(--kds-cream);
+  color: var(--kds-cream);
+}
+.kds-btn--inverse:hover { background-color: rgba(255, 255, 245, 0.15); }
+
+/* ─── Badge / Pill tag ─────────────────────────────────────────────── */
+.kds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 2px solid var(--kds-black);
+  border-radius: var(--kds-radius-pill);
+  font-family: var(--kds-font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--kds-shadow-sm);
+}
+.kds-badge--lime  { background-color: var(--kds-lime);  color: var(--kds-black); }
+.kds-badge--red   { background-color: var(--kds-red);   color: var(--kds-cream); }
+.kds-badge--cream { background-color: var(--kds-cream); color: var(--kds-black); }
+
+/* ─── Scrolling ticker ─────────────────────────────────────────────── */
+.kds-ticker {
+  overflow: hidden;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid var(--kds-black);
+  border-bottom: 2px solid var(--kds-black);
+}
+
+.kds-ticker__track {
+  display: flex;
+  animation: kds-ticker-scroll 18s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Four copies required for seamless 50% translateX loop */
+.kds-ticker__item {
+  font-family: var(--kds-font-display);
+  font-weight: 400;
+  font-size: 28px;
+  text-transform: uppercase;
+  padding: 0 24px;
+  line-height: 56px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes kds-ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Card ─────────────────────────────────────────────────────────── */
+.kds-card {
+  background-color: var(--kds-cream);
+  border: 2px solid var(--kds-black);
+  border-radius: var(--kds-radius-card);
+  padding: var(--kds-s8);
+  box-shadow: var(--kds-shadow-md);
+}
+
+/* ─── Organic image frame ───────────────────────────────────────────── */
+.kds-image-frame {
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  border: 3px solid var(--kds-black);
+  overflow: hidden;
+  box-shadow: var(--kds-shadow-lg);
+}
