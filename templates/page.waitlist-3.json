@@ -12,38 +12,45 @@
     "main": {
       "type": "main-page",
       "disabled": true,
-      "settings": {}
+      "settings": {
+        "max_width": "medium",
+        "display_on_card": true,
+        "color_scheme": "",
+        "use_gradient_background": false
+      }
     },
     "kds_hero": {
       "type": "kds-hero",
       "settings": {
         "eyebrow": "Gefriergetrocknete Früchte",
         "heading": "CRUNCH IN PROGRESS!",
-        "body_text": "<p><strong>100% Frucht. 0% Ausbeutung.<\/strong><br><br>Gefriergetrocknete Früchte; fair produziert, in der Ursprungsgemeinde verarbeitet, radikal transparent.<\/p>",
+        "body_text": "<p><strong>100% Frucht. 0% Ausbeutung.</strong><br/><br/>Gefriergetrocknete Früchte; fair produziert, in der Ursprungsgemeinde verarbeitet, radikal transparent.</p>",
         "button_label": "WAITLIST BEITRETEN",
         "button_scroll_target": "kds-email-signup",
+        "button_url": "",
+        "image": "shopify://shop_images/Group_18_1.webp",
         "image_position": "right",
-        "image_fallback_color": "#FF781E",
-        "bg_color": "#FFC5FF"
+        "image_fallback_color": "#ff781e",
+        "bg_color": "#ffc5ff"
       }
     },
     "kds_ticker_1": {
       "type": "kds-ticker",
       "settings": {
-        "text": "ITS NOT FAIR! ITS NOT FAIR! ITS NOT FAIR! ITS NOT FAIR! ",
-        "bg_color": "#ACFF64",
-        "text_color": "#AE0000"
+        "text": "ITS NOT FAIR! ITS NOT FAIR! ITS NOT FAIR! ITS NOT FAIR!",
+        "bg_color": "#acff64",
+        "text_color": "#ae0000"
       }
     },
     "kds_value_prop": {
       "type": "kds-value-prop",
       "settings": {
         "eyebrow": "Pioniere profitieren",
-        "body_text": "<p>Waitlist beitreten und 50% auf deine erste Bestellung nach dem Launch erhalten.<\/p>",
+        "body_text": "<p>Waitlist beitreten und 50% auf deine erste Bestellung nach dem Launch erhalten.</p>",
         "badge_text": "",
-        "bg_color": "#AE0000",
-        "eyebrow_color": "#FFC5FF",
-        "text_color": "#FFFFF5"
+        "bg_color": "#ae0000",
+        "eyebrow_color": "#ffc5ff",
+        "text_color": "#fffff5"
       }
     },
     "kds_email_signup": {
@@ -54,9 +61,9 @@
         "button_label": "JETZT BEITRETEN",
         "subtext": "",
         "success_handle": "waitlist-success",
-        "bg_color": "#AE0000",
-        "heading_color": "#FFFFF5",
-        "subtext_color": "#FFFFF5",
+        "bg_color": "#ae0000",
+        "heading_color": "#fffff5",
+        "subtext_color": "#fffff5",
         "padding_v": 64
       }
     }
