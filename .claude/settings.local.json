@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(python3 -c ' *)",
+      "Bash(tee /tmp/shopify-dev.log)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(lsof -ti:9292)",
+      "Bash(xargs kill *)"
     ]
   }
 }
